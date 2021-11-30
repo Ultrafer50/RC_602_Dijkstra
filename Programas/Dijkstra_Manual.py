@@ -92,10 +92,10 @@ class Grafo:
             print("El nodo no existe")
     
     # Imprimir datos básicos de cada nodo
-    def imprimirDatos(self):
-        print("\nLos valores finales del grafo son los siguientes:")
+    def imprimirDatos(self, a):
+        print("Desde el nodo '" + a + "':")
         for n in self.nodos:
-            print("La distancia del nodo '" + n + "' es " + 
+            print("La distancia hasta '" + n + "' es de " + 
                   str(self.nodos[n].distancia) + " llegando desde '" + 
                   str(self.nodos[n].padre) + "'")
     
@@ -107,8 +107,8 @@ class Grafo:
             camino.insert(0, actual)
             actual = self.nodos[actual].padre
         
-        print("La ruta mas rapida por Dijkstra entre '" + a + "' y '" + b + "' es:")
-        print(camino, "\nCon un costo de: " ,self.nodos[b].distancia)
+        print("\nLa ruta mas rapida por Dijkstra entre '" + a + "' y '" + b + "' es:")
+        print(camino, "\nCon un costo de: " ,self.nodos[b].distancia, "\n")
     
 class main:
     g = Grafo()
@@ -127,15 +127,14 @@ class main:
     for i in range(cantAristas):
         
         print("\n" + str(i + 1) + "° Arista")
-        a = input("Ingrese primer nodo de la arista: ")
-        b = input("Ingrese segundo nodo de la arista: ")
-        p = int(input("Ingrese peso de la arista: "))
+        a = input(" Ingrese primer nodo de la arista: ")
+        b = input(" Ingrese segundo nodo de la arista: ")
+        p = int(input(" Ingrese peso de la arista: "))
         g.agregarArista(a, b, p)
-        print("\n")
     
-    s = input("Nodo de inicio: ")
-    t = input("Nodo de fin: ")
+    nodoInicio = input("Nodo de inicio: ")
+    nodoDestino = input("Nodo de fin: ")
     
-    g.dijkstra(s)
-    g.imprimirCamino(s, t)
-    g.imprimirDatos()
+    g.dijkstra(nodoInicio)
+    g.imprimirCamino(nodoInicio, nodoDestino)
+    g.imprimirDatos(nodoInicio)
