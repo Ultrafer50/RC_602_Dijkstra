@@ -15,5 +15,6 @@ En este repositorio de GitHub se presentan diferentes versiones de la implementa
 ## Bellman-Ford, por Jean Pierre Soto Tipacti
 - Soto-Complejidad-Alta.py
   - Presenta el escenario de complejidad alta; solo se ejecuta.
+
 - Soto-Complejidad-Baja.py
   - Presenta el escenario de complejidad baja; solo se ejecuta.
