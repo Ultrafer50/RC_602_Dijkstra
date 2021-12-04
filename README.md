@@ -1,6 +1,6 @@
 # RC_602_Dijkstra
 
-En este repositorio de GitHub se presentan diferentes versiones de la implementacion de Dijkstra, además de la implementación Bellman-Ford utilizada para la comparación (realizado por Jean Pierre Soto Tipacti).
+En este repositorio de GitHub se presentan diferentes versiones de la implementacion de Dijkstra, además de la implementación Bellman-Ford utilizada para la comparación (realizada por Jean Pierre Soto Tipacti).
 
 ## Dijkstra, por Fernando Rodríguez Roncal
 - RC-602-CA2-Programa-Rodriguez-20193354.py
