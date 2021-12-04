@@ -1,15 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Al iniciar el programa se pedira indicar el numero de nodos en el grafo.
-Despues, se debe ingresar el nombre de cada nodo, uno por uno.
-A continuacion, se pedira indicar el numero de aristas en el grafo e 
-ingresar cada una de estas.
-    Para el ingreso de las aristas se pedira un nodo 'a', un nodo 'b' y el peso.
-    Hay que tener en cuenta que la conexión entre 'a' y 'b' solo debe ingresarse
-    una vez: (a, b) y (b, a) son la misma arista
-Finalmente, hay que indicar el nombre del nodo para iniciar el camino, asi como
-el nodo final. Después de esto se imprimira el camino optimo, el peso y demas datos.
+Esta version del programa fue creada para ejecutar rápidamente el escenario de 
+complejidad baja.
 """
+import time
 
 class Nodo:
     def __init__(self, i):
@@ -53,6 +47,9 @@ class Grafo:
     
     # Metodo dijkstra del Grafo
     def dijkstra(self, a):
+        global iteraciones
+        iteraciones = 0
+        
         if a in self.nodos:
             self.nodos[a].distancia = 0
             actual = a
@@ -72,7 +69,7 @@ class Grafo:
                 
                 # Se recorre los vecinos del nodo actual
                 for vecino in self.nodos[actual].vecinos:
-                    
+                    iteraciones = iteraciones + 1
                     # Considerando los vecinos no visitados 'v' del nodo actual 'n' si la distancia 
                     # de 'n' más el peso de la arista de su vecino es menor a la distancia de 'v', 
                     # se actualiza la distancia de 'v' y se guarda a 'n' como su predecesor
@@ -92,10 +89,10 @@ class Grafo:
             print("El nodo no existe")
     
     # Imprimir datos básicos de cada nodo
-    def imprimirDatos(self):
-        print("\nLos valores finales del grafo son los siguientes:")
+    def imprimirDatos(self, a):
+        print("Desde el nodo '" + a + "':")
         for n in self.nodos:
-            print("La distancia del nodo '" + n + "' es " + 
+            print("La distancia hasta '" + n + "' es de " + 
                   str(self.nodos[n].distancia) + " llegando desde '" + 
                   str(self.nodos[n].padre) + "'")
     
@@ -107,8 +104,8 @@ class Grafo:
             camino.insert(0, actual)
             actual = self.nodos[actual].padre
         
-        print("La ruta mas rapida por Dijkstra entre '" + a + "' y '" + b + "' es:")
-        print(camino, "\nCon un costo de: " ,self.nodos[b].distancia)
+        print("\nLa ruta mas rapida por Dijkstra entre '" + a + "' y '" + b + "' es:")
+        print(camino, "\nCon un costo de: " ,self.nodos[b].distancia, "\n")
     
 class main:
     g = Grafo()
@@ -130,9 +127,15 @@ class main:
     
     print("Nodos: 'R-1', 'R-2', 'R-3', 'R-4', 'R-5',' R-6'")
     
-    s = input("Nodo de inicio: ")
-    t = input("Nodo de fin: ")
+    nodoInicio = input("Nodo de inicio: ")
+    nodoDestino = input("Nodo de fin: ")
     
-    g.dijkstra(s)
-    g.imprimirCamino(s, t)
-    g.imprimirDatos()
+    start = time.perf_counter()
+    
+    g.dijkstra(nodoInicio)
+    g.imprimirCamino(nodoInicio, nodoDestino)
+    g.imprimirDatos(nodoInicio)
+    
+    end = time.perf_counter()
+    print("Iteraciones: ", iteraciones)
+    print("Tiempo de ejecucion:", (end - start))
